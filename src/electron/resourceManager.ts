@@ -1,7 +1,7 @@
-import osUtils from "os-utils";
 import fs from "fs";
-import os from "os";
 import { BrowserWindow } from "electron";
+import osUtils from "os-utils";
+import os from "os";
 
 const POLLING_INTERVALL = 500;
 
