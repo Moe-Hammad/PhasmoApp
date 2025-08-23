@@ -6,5 +6,6 @@ electron.contextBridge.exposeInMainWorld("electron", {
       callback(stats);
     });
   },
+  // Expect an Answer
   getStaticData: () => electron.ipcRenderer.invoke("getStaticData"),
 });

@@ -9,6 +9,7 @@ function App() {
     //@ts-ignore
     window.electron.subscribeStatistics((stats) => console.log(stats));
   }, []);
+
   return (
     <>
       <div></div>
