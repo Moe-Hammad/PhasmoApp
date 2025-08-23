@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "author": "Moe",
   "main": "dist-electron/main.js",
   "scripts": {
     "transpile:electron": "tsc --project src/electron/tsconfig.json",

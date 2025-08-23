@@ -1,6 +1,7 @@
 {
   "appId": "com.moe.phasmoapp",
   "files": ["dist-electron", "dist-react"],
+  "extraResources": ["dist-electron/preload.cjs"],
   "icon": "./kirby.jpg",
   "mac": {
     "target": "dmg"
