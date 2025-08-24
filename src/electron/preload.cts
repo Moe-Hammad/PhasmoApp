@@ -1,11 +1,10 @@
 const electron = require("electron");
 
 electron.contextBridge.exposeInMainWorld("electron", {
-  subscribeStatistics: (callback) => {
+  subscribeStatistics: (callback) =>
     ipcOn("statistics", (stats: any) => {
       callback(stats);
-    });
-  },
+    }),
   // Expect an Answer
   getStaticData: () => ipcInvoke("getStaticData"),
   // satisfies is used to define the type based on our global parameter
@@ -23,5 +22,7 @@ function ipcOn<Key extends keyof EventPayloadMapping>(
   key: Key,
   callback: (payload: EventPayloadMapping[Key]) => void
 ) {
-  electron.ipcRenderer.on(key, (_: any, payload: any) => callback(payload));
+  const cb = (_: Electron.IpcRendererEvent, payload: any) => callback(payload);
+  electron.ipcRenderer.on(key, cb);
+  return () => electron.ipcRenderer.off(key, cb);
 }

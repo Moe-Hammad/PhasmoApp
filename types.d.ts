@@ -14,10 +14,14 @@ type EventPayloadMapping = {
   getStaticData: StaticData;
 };
 
+type UnsubscribeFunction = () => void;
+
 interface Window {
   // electron weil die Bridge im preload Skript so genannt wurde.
   electron: {
-    subscribeStatistics: (callback: (statistics: Statistics) => void) => void;
+    subscribeStatistics: (
+      callback: (statistics: Statistics) => void
+    ) => UnsubscribeFunction;
     getStaticData: () => Promise<StaticData>;
   };
 }
