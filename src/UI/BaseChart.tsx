@@ -9,6 +9,7 @@ import {
 
 type BaseChartProps = {
   data: { value: number | undefined }[];
+  color: string;
 };
 
 export function BaseChart(props: BaseChartProps) {
@@ -24,7 +25,7 @@ export function BaseChart(props: BaseChartProps) {
         <Area
           // Dataarea
           fillOpacity={0.3}
-          fill={"#0A4D5C"}
+          fill={props.color}
           stroke={"#5DD4EE"}
           strokeWidth={3}
           type="monotone"
