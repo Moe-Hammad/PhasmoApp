@@ -13,8 +13,8 @@ export function ipcMainHandle<Key extends keyof EventPayloadMapping>(
   handler: () => EventPayloadMapping[Key]
 ) {
   ipcMain.handle(key, (event) => {
-    event.senderFrame.url === getUIPath();
-    handler();
+    validateEventFrame(event.senderFrame);
+    return handler();
   });
 }
 
