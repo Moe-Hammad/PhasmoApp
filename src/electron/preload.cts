@@ -1,15 +1,16 @@
 const electron = require("electron");
 
+// exposeInMainWorld für Renderer
 electron.contextBridge.exposeInMainWorld("electron", {
-  subscribeStatistics: (callback) =>
-    ipcOn("statistics", (stats: any) => {
-      callback(stats);
-    }),
-  // Expect an Answer
-  getStaticData: () => ipcInvoke("getStaticData"),
-  // satisfies is used to define the type based on our global parameter
+  // Alle Geister abrufen
+  getGhosts: () => electron.ipcRenderer.invoke("get-ghosts"),
+
+  // Ghosts nach Kriterien filtern
+  filterGhosts: (criteria: GhostCriteria) =>
+    electron.ipcRenderer.invoke("filter-ghosts", criteria),
 } satisfies Window["electron"]);
 
+// Adapters
 // invoke is async Fetch = invoke
 function ipcInvoke<Key extends keyof EventPayloadMapping>(
   key: Key

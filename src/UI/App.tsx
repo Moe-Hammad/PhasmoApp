@@ -1,38 +1,43 @@
-import { useMemo } from "react";
-import "./App.css";
-import { useStatistics } from "./useStatistics";
-import { Chart } from "./Chart";
+import { useEffect, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { GhostInfo } from "./Components/GhostInfo";
+import { GhostFilter } from "./Components/GhostFilter";
 
 function App() {
-  const statistics = useStatistics(10);
-  const cpuUsages = useMemo(
-    () => statistics.map((stats) => stats.cpuUsage),
-    [statistics]
-  );
-  const ramUsage = useMemo(
-    () => statistics.map((stats) => stats.ramUsage),
-    [statistics]
-  );
-  const storageUsage = useMemo(
-    () => statistics.map((stats) => stats.storageData),
-    [statistics]
-  );
-  // Hier abonniert das Frontend mit dem backend und kann somit die Daten anzeigen lassen
+  const [ghosts, setGhosts] = useState<Ghost[]>([]);
+  const [evidence, setEvidence] = useState<Evidence[]>([]);
+
+  // Geister vom Backend laden
+  useEffect(() => {
+    async function fetchGhosts() {
+      try {
+        const allGhosts = await window.electron.getGhosts();
+        setGhosts(allGhosts);
+      } catch (error) {
+        console.error("Fehler beim Laden der Ghosts:", error);
+      }
+    }
+
+    fetchGhosts();
+  }, []);
+
+  if (ghosts.length === 0) {
+    return <p className="text-center mt-5">No ghosts found.</p>;
+  }
 
   return (
-    <>
-      <div style={{ height: 120 }}>
-        <Chart data={cpuUsages} maxDataPoint={10} color={"#FFFFFF"} />
-      </div>
-      <div style={{ height: 120 }}>
-        <Chart data={ramUsage} maxDataPoint={10} color={"#f60404ff"} />
-      </div>
-      <div style={{ height: 120 }}>
-        <Chart data={storageUsage} maxDataPoint={10} color={"#1707f1ff"} />
-      </div>
+    <div className="container py-4">
+      <h1 className=" mb-4 text-center">Phasmophobia Ghosts</h1>
 
-      <p>CPU Usage, Ram Usage and Storage Usage is getting displayed.</p>
-    </>
+      <div className="row h-100">
+        {<GhostFilter ghosts={ghosts}></GhostFilter>}
+      </div>
+      <div className="row">
+        {/* {ghosts.map((ghost) => (
+          <GhostInfo key={ghost.name} ghost={ghost} />
+        ))} */}
+      </div>
+    </div>
   );
 }
 
