@@ -1,0 +1,16 @@
+{
+  "ghosts": [
+    {
+      "id": 1,
+      "name": "Phantom",
+      "strength": "Unsichtbar",
+      "weakness": "Foto"
+    },
+    {
+      "id": 2,
+      "name": "Mare",
+      "strength": "Stark im Dunkeln",
+      "weakness": "Licht"
+    }
+  ]
+}

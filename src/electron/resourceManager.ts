@@ -3,7 +3,7 @@ import { BrowserWindow } from "electron";
 import osUtils from "os-utils";
 import os from "os";
 import { ipcWebContentsSend } from "./util.js";
-
+// backend
 const POLLING_INTERVALL = 500;
 
 export function pollResources(mainWindow: BrowserWindow) {
@@ -16,7 +16,6 @@ export function pollResources(mainWindow: BrowserWindow) {
       ramUsage,
       storageData: storageData.usage,
     });
-    console.log({ cpuUsage, ramUsage, storageData: storageData.usage });
   }, POLLING_INTERVALL);
 }
 

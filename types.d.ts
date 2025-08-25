@@ -25,3 +25,14 @@ interface Window {
     getStaticData: () => Promise<StaticData>;
   };
 }
+
+type Ghost = {
+  id: number;
+  name: string;
+  strength: string;
+  weakness: string;
+};
+
+type DBData = {
+  ghosts: Ghost[];
+};

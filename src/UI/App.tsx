@@ -1,10 +1,9 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import "./App.css";
 import { useStatistics } from "./useStatistics";
 import { Chart } from "./Chart";
 
 function App() {
-  const [count, setCount] = useState(0);
   const statistics = useStatistics(10);
   const cpuUsages = useMemo(
     () => statistics.map((stats) => stats.cpuUsage),
