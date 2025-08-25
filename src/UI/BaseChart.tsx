@@ -18,7 +18,7 @@ export function BaseChart(props: BaseChartProps) {
       <AreaChart data={props.data}>
         <CartesianGrid
           // grid pattern
-          stroke="#201f1fff"
+          stroke="#000000ff"
           strokeDasharray="5 5"
           fill="#1C1C1C"
         />

@@ -22,8 +22,6 @@ function App() {
 
   return (
     <>
-      <div></div>
-      <h1>Vite + React</h1>
       <div style={{ height: 120 }}>
         <Chart data={cpuUsages} maxDataPoint={10} color={"#FFFFFF"} />
       </div>
@@ -33,17 +31,8 @@ function App() {
       <div style={{ height: 120 }}>
         <Chart data={storageUsage} maxDataPoint={10} color={"#1707f1ff"} />
       </div>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
+      <p>CPU Usage, Ram Usage and Storage Usage is getting displayed.</p>
     </>
   );
 }
