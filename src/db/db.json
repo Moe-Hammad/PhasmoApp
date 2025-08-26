@@ -4,7 +4,7 @@
       "name": "Spirit",
       "ev": ["EMF Level 5", "Spirit Box", "Ghost Writing"],
       "notes": ["Smudge prevents hunts ~3 mins (longest)."],
-      "speed": 1.7
+      "SpeedDetails": [{ "speed": 1.7, "changesSpeed": false }]
     },
     {
       "name": "Wraith",
@@ -12,7 +12,8 @@
       "notes": [
         "Will never step in or disturb salt; no UV footprints.",
         "Can teleport to players (EMF 2, sometimes 5)."
-      ]
+      ],
+      "SpeedDetails": [{ "speed": 1.7, "changesSpeed": false }]
     },
     {
       "name": "Phantom",
@@ -20,17 +21,20 @@
       "notes": [
         "Photo makes ghost model disappear.",
         "Slow blink during hunts."
-      ]
+      ],
+      "SpeedDetails": [{ "speed": 1.7, "changesSpeed": false }]
     },
     {
       "name": "Poltergeist",
       "ev": ["Spirit Box", "Fingerprints (UV)", "Ghost Writing"],
-      "notes": ["Can throw multiple objects at once (polter burst)."]
+      "notes": ["Can throw multiple objects at once (polter burst)."],
+      "SpeedDetails": [{ "speed": 1.7, "changesSpeed": false }]
     },
     {
       "name": "Banshee",
       "ev": ["Fingerprints (UV)", "Ghost Orbs", "D.O.T.S"],
-      "notes": ["Targets one player.", "Unique parabolic scream."]
+      "notes": ["Targets one player.", "Unique parabolic scream."],
+      "SpeedDetails": [{ "speed": 1.7, "changesSpeed": false }]
     },
     {
       "name": "Jinn",
@@ -38,6 +42,16 @@
       "notes": [
         "Will not turn the fuse box OFF directly (can overload).",
         "Faster with line of sight when far while power ON."
+      ],
+      "SpeedDetails": [
+        {
+          "speed": 1.7,
+          "changesSpeed": true,
+          "fixed": [
+            { "maxSpeed": 2.5, "when": "≥3 m, breaker ON, and line of sight" }
+          ],
+          "notes": ["Faster at range with breaker ON and LoS."]
+        }
       ]
     },
     {
@@ -46,41 +60,59 @@
       "notes": [
         "Prefers darkness; higher hunt chance with lights off.",
         "Will not turn lights ON."
-      ]
+      ],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Revenant",
       "ev": ["Ghost Orbs", "Ghost Writing", "Freezing Temps"],
-      "notes": ["Very slow with no LoS; extremely fast when it sees you."]
+      "notes": ["Very slow with no LoS; extremely fast when it sees you."],
+      "SpeedDetails": {
+        "speed": 1.0,
+        "changesSpeed": true,
+        "fixed": [
+          {
+            "maxSpeed": 3.0,
+            "when": "when it has line of sight / knows your location"
+          }
+        ],
+        "notes": ["Very slow without LoS; spikes to ~3.0 m/s when it sees you."]
+      }
     },
+
     {
       "name": "Shade",
       "ev": ["EMF Level 5", "Ghost Writing", "Freezing Temps"],
       "notes": [
         "Shy: fewer events with people nearby; reluctant to hunt with players in room."
-      ]
+      ],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Demon",
       "ev": ["Fingerprints (UV)", "Ghost Writing", "Freezing Temps"],
-      "notes": ["Can hunt very early; shorter smudge cooldown."]
+      "notes": ["Can hunt very early; shorter smudge cooldown."],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Yurei",
       "ev": ["Ghost Orbs", "D.O.T.S", "Freezing Temps"],
       "notes": [
         "Stronger sanity drain door event; smudging room can lock it briefly."
-      ]
+      ],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Oni",
       "ev": ["EMF Level 5", "D.O.T.S", "Freezing Temps"],
-      "notes": ["No airball events.", "More visible during events."]
+      "notes": ["No airball events.", "More visible during events."],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Yokai",
       "ev": ["Spirit Box", "Ghost Orbs", "D.O.T.S"],
-      "notes": ["Talking can trigger hunts; reduced hearing during hunts."]
+      "notes": ["Talking can trigger hunts; reduced hearing during hunts."],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Hantu",
@@ -88,33 +120,65 @@
       "notes": [
         "Faster in cold; frosty breath during hunts in cold/with breaker off.",
         "Cannot turn fuse box ON."
+      ],
+      "SpeedDetails": [
+        {
+          "speed": 1.4,
+          "changesSpeed": true,
+          "fixed": [
+            {
+              "maxSpeed": 2.7,
+              "when": "low room temperature."
+            }
+          ],
+          "notes": ["Speed depends on room temperature; no LoS acceleration."]
+        }
       ]
     },
     {
       "name": "Goryo",
       "ev": ["EMF Level 5", "Fingerprints (UV)", "D.O.T.S"],
-      "notes": ["DOTS only on camera; rarely far from room."]
+      "notes": ["DOTS only on camera; rarely far from room."],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Myling",
       "ev": ["EMF Level 5", "Fingerprints (UV)", "Ghost Writing"],
-      "notes": ["Very quiet footsteps during hunt; active on parabolic."]
+      "notes": ["Very quiet footsteps during hunt; active on parabolic."],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "Onryo",
       "ev": ["Spirit Box", "Ghost Orbs", "Freezing Temps"],
-      "notes": ["Candle/flame blow-out can trigger hunts."]
+      "notes": ["Candle/flame blow-out can trigger hunts."],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "The Twins",
       "ev": ["EMF Level 5", "Spirit Box", "Freezing Temps"],
-      "notes": ["Two spots interacting; different hunt speeds."]
+      "notes": ["Two spots interacting; different hunt speeds."],
+      "SpeedDetails": [
+        {
+          "speed": 1.0,
+          "changesSpeed": true,
+          "fixed": [{ "maxSpeed": 1.9, "when": "The a different Twin hunts" }],
+          "notes": ["One Twin will hunt slower than the other."]
+        }
+      ]
     },
     {
       "name": "Raiju",
       "ev": ["EMF Level 5", "Ghost Orbs", "D.O.T.S"],
       "notes": [
         "Faster near active electronics; lower hunt threshold around electronics."
+      ],
+      "SpeedDetails": [
+        {
+          "speed": 1.7,
+          "changesSpeed": true,
+          "fixed": [{ "maxSpeed": 2.5, "when": "near ACTIVE electronics" }],
+          "notes": ["Much faster near active electronics placed by players."]
+        }
       ]
     },
     {
@@ -122,7 +186,8 @@
       "ev": ["EMF Level 5", "Ghost Orbs", "Fingerprints (UV)"],
       "notes": [
         "6-finger/odd prints; prints fade quickly; sometimes no prints."
-      ]
+      ],
+      "SpeedDetails": { "speed": 1.7, "changesSpeed": false }
     },
     {
       "name": "The Mimic",
@@ -130,6 +195,16 @@
       "notes": [
         "ALWAYS shows Ghost Orbs as extra evidence.",
         "Can imitate other ghosts' behaviors."
+      ],
+      "SpeedDetails": [
+        {
+          "speed": 1.0,
+          "changesSpeed": true,
+          "fixed": [{ "maxSpeed": 3.7, "when": "Depends on the Ghost!" }],
+          "notes": [
+            "The Mimic Speed will change based on the Ghost he is in the moment."
+          ]
+        }
       ]
     },
     {
@@ -137,18 +212,51 @@
       "ev": ["Spirit Box", "Ghost Writing", "Freezing Temps"],
       "notes": [
         "Box/parabolic can curse you → faster sanity drain; longer smudge blind once hunting."
+      ],
+      "SpeedDetails": [
+        {
+          "speed": 1.7,
+          "changesSpeed": true,
+          "fixed": [
+            {
+              "maxSpeed": 3.7,
+              "when": "Based on the User Average Sanity - the lower the faster it is."
+            }
+          ],
+          "notes": ["Based on User Average Sanity."]
+        }
       ]
     },
     {
       "name": "Deogen",
       "ev": ["Spirit Box", "Ghost Writing", "D.O.T.S"],
-      "notes": ["Heavy breathing SB; very slow when near you; fast at range."]
+      "notes": ["Heavy breathing SB; very slow when near you; fast at range."],
+      "SpeedDetails": [
+        {
+          "speed": 0.4,
+          "changesSpeed": true,
+          "fixed": [{ "maxSpeed": 3.0, "when": "Away from Player" }],
+          "notes": [
+            "The Deogen moves extremely fast when rushing toward the player but slows down drastically once it reaches its target."
+          ]
+        }
+      ]
     },
     {
       "name": "Thaye",
       "ev": ["Ghost Orbs", "Ghost Writing", "D.O.T.S"],
       "notes": [
         "Starts very fast/active; ages to become slow/inactive; Ouija age changes."
+      ],
+      "SpeedDetails": [
+        {
+          "speed": 1.0,
+          "changesSpeed": true,
+          "fixed": [{ "maxSpeed": 2.75, "when": "In the Early Hunts." }],
+          "notes": [
+            "It will be fast at the beginning but slow down as it gets older."
+          ]
+        }
       ]
     }
   ],
@@ -313,7 +421,7 @@
         "threshold": "Earlier (~70%)",
         "traits": ["Shorter smudge block (~120s)", "Can chain early hunts"],
         "abilities": ["Very early hunt attempts"],
-        "tests": ["Smudge timing: Starts hunting at 90sec or earlier → Demon"],
+        "tests": ["Smudge timing: Starts hunting before 90sec → Demon"],
         "strategy": ["Stay smudge-ready", "Use pills conservatively"]
       },
       "Yurei": {
@@ -353,12 +461,11 @@
         "tests": [
           "Talk near ghost to provoke",
           "Hide close and whisper — may not hear",
-          "Will not react to electronics from a distance bigger than 2.5m, other Ghost will react."
+          "Use Electronics for a reaction from distance -> no reaction = yokai."
         ],
         "strategy": [
           "Be careful using voice chat",
-          "Use close hides in a pinch",
-          "Use Electronics for a reaction."
+          "Use close hides in a pinch"
         ]
       },
       "Hantu": {
@@ -370,13 +477,10 @@
         "abilities": ["Temperature-based speed"],
         "tests": [
           "Warm house (breaker ON) to slow it",
-          "Compare speeds in different rooms"
+          "Compare speeds in different rooms",
+          "Turn off breaker to look for Cold breath, on the Ghost Model."
         ],
-        "strategy": [
-          "Heat building to weaken",
-          "Map cold zones with thermo",
-          "Turn off breaker for look for Cold breath."
-        ]
+        "strategy": ["Heat building to weaken", "Map cold zones with thermo"]
       },
       "Goryo": {
         "threshold": "Normal (50%)",
@@ -384,9 +488,11 @@
         "abilities": ["DOTS cam-only"],
         "tests": [
           "Place camera; observe DOTS remotely",
-          "If only cam-DOTS → Goryo likely"
+          "If only cam-DOTS → Goryo"
         ],
-        "strategy": ["Aim cam at ghost room", "Combine with motion sensors"]
+        "strategy": [
+          "D.O.T.S and Camera in the Ghost room + Combine with motion sensors"
+        ]
       },
       "Myling": {
         "threshold": "Normal (50%)",
@@ -407,7 +513,8 @@
         "abilities": ["Hunt roll after flame goes out"],
         "tests": [
           "Place candles; track extinguish → hunt",
-          "Pull candles to provoke early hunt"
+          "Pull candles to provoke early hunt",
+          "Put a Cruzifix under a candle -> extinguished Candle than a burned Cruzi -> Onryo"
         ],
         "strategy": [
           "Use candles for safety",
@@ -443,13 +550,13 @@
       "Obake": {
         "threshold": "Normal (50%)",
         "traits": ["Rare 6-finger UV handprint", "Fingerprints fade faster"],
-        "abilities": ["Odd hand shapes; faster decay"],
+        "abilities": ["Odd hand shapes (6 Finger); faster decay"],
         "tests": ["Look for 6-finger prints", "Time fingerprint lifetime"],
         "strategy": ["Photo/UV every print quickly", "Re-check surfaces soon"]
       },
       "The Mimic": {
         "threshold": "Varies (mimics target)",
-        "traits": ["Copies behavior & speed", "Always has extra Ghost Orbs"],
+        "traits": ["Always has extra Ghost Orbs", "Copies behavior & speed"],
         "abilities": ["Can flip between archetypes"],
         "tests": [
           "Confirm orbs even if not expected",
@@ -466,7 +573,8 @@
         "abilities": ["LoS acceleration cap present"],
         "tests": [
           "Delay Box/Paramic early",
-          "Use pills after confirming curse"
+          "Use pills after confirming curse",
+          "Use Pills during Hunt and listen for speed Changes."
         ],
         "strategy": [
           "Manage sanity tightly",
@@ -495,7 +603,8 @@
         "abilities": ["Behavior/evidence shift with time"],
         "tests": [
           "Stay near room to age faster",
-          "Compare early vs late speeds"
+          "Compare early vs late speeds",
+          "Use Oujia Board and check for the age, will change with time."
         ],
         "strategy": ["Prolong near-room presence", "Re-test behaviors later"]
       }
