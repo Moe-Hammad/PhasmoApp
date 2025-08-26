@@ -1,5 +1,5 @@
 interface GhostInfoProps {
-  ghost: Ghost;
+  ghost: GhostDetailed;
 }
 
 export function GhostInfo({ ghost }: GhostInfoProps) {
@@ -14,9 +14,9 @@ export function GhostInfo({ ghost }: GhostInfoProps) {
         <p className="card-text mb-1">
           <strong>Weakness:</strong> {ghost.weakness}
         </p>
-        <p className="card-text mb-2">
+        {/* <p className="card-text mb-2">
           <strong>Blinking Pattern:</strong> {ghost.blinkingPattern}
-        </p>
+        </p> */}
         <div>
           <strong>Evidence:</strong>{" "}
           {ghost.evidence.map((e) => (

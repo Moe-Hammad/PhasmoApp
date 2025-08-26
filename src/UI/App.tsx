@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { GhostInfo } from "./Components/GhostInfo";
 import { GhostFilter } from "./Components/GhostFilter";
+import { GhostInfo } from "./Components/GhostInfo";
 
 function App() {
-  const [ghosts, setGhosts] = useState<Ghost[]>([]);
-  const [evidence, setEvidence] = useState<Evidence[]>([]);
+  const [ghosts, setGhosts] = useState<GhostDetailed[]>([]);
+  const [evidence, setEvidence] = useState<EvidenceMap>([]);
 
   // Geister vom Backend laden
   useEffect(() => {
@@ -33,9 +33,9 @@ function App() {
         {<GhostFilter ghosts={ghosts}></GhostFilter>}
       </div>
       <div className="row">
-        {/* {ghosts.map((ghost) => (
+        {ghosts.map((ghost) => (
           <GhostInfo key={ghost.name} ghost={ghost} />
-        ))} */}
+        ))}
       </div>
     </div>
   );

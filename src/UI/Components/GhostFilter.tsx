@@ -2,11 +2,11 @@ import { useState, useMemo } from "react";
 import { GhostInfo } from "./GhostInfo";
 
 interface GhostFilterProps {
-  ghosts: Ghost[];
+  ghosts: GhostDetailed[];
 }
 
 export function GhostFilter({ ghosts }: GhostFilterProps) {
-  const [selectedEvidence, setSelectedEvidence] = useState<Evidence[]>([]);
+  const [selectedEvidence, setSelectedEvidence] = useState<EvidenceMap>([]);
 
   // Gefilterte Geister berechnen
   const filteredGhosts = useMemo(() => {
