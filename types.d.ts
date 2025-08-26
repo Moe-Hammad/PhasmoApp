@@ -8,10 +8,6 @@ type EvidenceKey =
   | "Ghost Orbs"
   | "Fingerprints (UV)";
 
-type Evidence = {
-  [key in EvidenceKey]?: string;
-};
-
 // === Ghosts ===
 type GhostName =
   | "Spirit"
@@ -48,9 +44,7 @@ type GhostBehaviourDetails = {
 };
 
 // besser als Map (key: GhostName → Details)
-type GhostBehaviour = {
-  [key in GhostName]: GhostBehaviourDetails;
-};
+type SpecificGhostbehaviour = { [key in GhostName]: GhostBehaviourDetails };
 
 // === Speed ===
 type SpeedModifier = { maxspeed: number; when: string };
@@ -65,7 +59,7 @@ type SpeedDetails = {
 // === Ghost Model ===
 type Ghost = {
   name: GhostName;
-  ev: Evidence[]; // Evidences
+  ev: EvidenceKey[]; // Evidences
   notes: string[];
   speedDetails: SpeedDetails;
   behaviour?: GhostBehaviourDetails;
@@ -74,8 +68,8 @@ type Ghost = {
 // === DB Root ===
 type DBData = {
   ghosts: Ghost[];
-  behaviours: GhostBehaviour;
-  evidences: Evidence[];
+  behaviours: SpecificGhostbehaviour;
+  evidences: EvidenceKey[];
 };
 
 // === Criteria for Filtering ===
@@ -92,6 +86,7 @@ type EventPayloadMapping = {
 interface Window {
   electron: {
     getGhosts: () => Promise<Ghost[]>;
+    getEveryThing: () => Promise<DBData>;
     filterGhosts: (criteria: GhostCriteria) => Promise<Ghost[]>;
   };
 }

@@ -1,14 +1,15 @@
 const electron = require("electron");
 
 // exposeInMainWorld für Renderer
-electron.contextBridge.exposeInMainWorld("electron", {
-  // Alle Geister abrufen
-  getGhosts: () => electron.ipcRenderer.invoke("get-ghosts"),
 
-  // Ghosts nach Kriterien filtern
+electron.contextBridge.exposeInMainWorld("electron", {
+  getGhosts: () =>
+    electron.ipcRenderer.invoke("get-ghosts") as Promise<Ghost[]>,
+  getEveryThing: () =>
+    electron.ipcRenderer.invoke("get-everything") as Promise<DBData>,
   filterGhosts: (criteria: GhostCriteria) =>
-    electron.ipcRenderer.invoke("filter-ghosts", criteria),
-} satisfies Window["electron"]);
+    electron.ipcRenderer.invoke("filter-ghosts", criteria) as Promise<Ghost[]>,
+} as Window["electron"]);
 
 // Adapters
 // invoke is async Fetch = invoke

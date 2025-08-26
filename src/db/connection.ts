@@ -3,18 +3,19 @@ import { JSONFile } from "lowdb/node";
 import path from "path";
 import { type App } from "electron";
 
-// Die Verbindung wird hergestellt und db zurückgegeben
+// Verbindung zur DB herstellen
 export async function connection(app: App): Promise<Low<DBData>> {
   const dbPath = path.join(app.getAppPath(), "src", "db", "db.json");
   console.log("DB Path:", dbPath);
 
   const adapter = new JSONFile<DBData>(dbPath);
-  const db = new Low<DBData>(adapter, { ghosts: [] });
+
+  const db = new Low<DBData>(adapter, {} as DBData);
 
   await db.read();
 
   if (!db.data) {
-    db.data = { ghosts: [] };
+    throw Error("Datenbank leer.");
   }
 
   console.log("DB connected");

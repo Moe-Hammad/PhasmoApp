@@ -2,41 +2,42 @@ import { useState, useMemo } from "react";
 import { GhostInfo } from "./GhostInfo";
 
 interface GhostFilterProps {
-  ghosts: GhostDetailed[];
+  ghosts: Ghost[];
+  evidence: EvidenceKey[]; // Alle möglichen Evidenzen
+  behave?: SpecificGhostbehaviour | null; // Komplette Map
 }
 
-export function GhostFilter({ ghosts }: GhostFilterProps) {
-  const [selectedEvidence, setSelectedEvidence] = useState<EvidenceMap>([]);
+export function GhostFilter({ ghosts, evidence, behave }: GhostFilterProps) {
+  const [selectedEV, setSelectedEV] = useState<EvidenceKey[]>([]);
 
   // Gefilterte Geister berechnen
   const filteredGhosts = useMemo(() => {
-    if (selectedEvidence.length === 0) return ghosts;
-    return ghosts.filter((g) =>
-      selectedEvidence.some((e) => g.evidence.includes(e))
-    );
-  }, [ghosts, selectedEvidence]);
+    if (selectedEV.length === 0) return ghosts;
+
+    // Ghosts behalten, die ALLE ausgewählten Evidenzen enthalten
+    return ghosts.filter((g) => selectedEV.every((ev) => g.ev.includes(ev)));
+  }, [ghosts, selectedEV]);
 
   return (
     <div>
       {/* Evidence-Filter Buttons */}
-      <div className="column-2">
-        {evidence.map((checked) => (
+      <div className="column-2 mb-3">
+        {evidence.map((ev) => (
           <button
-            key={checked}
+            key={ev}
             className={`btn me-2 mb-2 ${
-              selectedEvidence.includes(checked)
-                ? "btn-primary"
-                : "btn-outline-primary"
+              selectedEV.includes(ev) ? "btn-primary" : "btn-outline-primary"
             }`}
             onClick={() =>
-              setSelectedEvidence((prev) =>
-                prev.includes(checked)
-                  ? prev.filter((x) => x !== checked)
-                  : [...prev, checked]
+              setSelectedEV(
+                (prev) =>
+                  prev.includes(ev)
+                    ? prev.filter((x) => x !== ev) // abwählen
+                    : [...prev, ev] // auswählen
               )
             }
           >
-            {checked}
+            {ev}
           </button>
         ))}
       </div>
@@ -44,7 +45,11 @@ export function GhostFilter({ ghosts }: GhostFilterProps) {
       {/* Gefilterte Ghost Cards */}
       <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-4">
         {filteredGhosts.map((ghost) => (
-          <GhostInfo key={ghost.name} ghost={ghost} />
+          <GhostInfo
+            key={ghost.name}
+            ghost={ghost}
+            behave={behave ? behave[ghost.name] : undefined}
+          />
         ))}
       </div>
     </div>
